@@ -103,15 +103,18 @@ export default () => {
             <Heading>
               <span>Hire the best</span>
               <br />
-              <SlantedBackground>Marketing Team.</SlantedBackground>
+              <SlantedBackground>Talent.</SlantedBackground>
             </Heading>
             <PrimaryAction>Read Customer Stories</PrimaryAction>
           </LeftColumn>
           <RightColumn>
-            <StyledResponsiveVideoEmbed
-              url="//player.vimeo.com/video/374265101?title=0&portrait=0&byline=0&autoplay=0&responsive=1"
-              background="transparent"
-            />
+            <Heading>
+              <span>Become a part of the</span>
+              <br />
+              <SlantedBackground>Best Team.</SlantedBackground>
+            </Heading>
+            <PrimaryAction>Read Customer Stories</PrimaryAction>
+
           </RightColumn>
         </TwoColumn>
       </HeroContainer>
