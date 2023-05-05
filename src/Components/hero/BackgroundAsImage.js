@@ -2,13 +2,20 @@ import React from "react";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
-
-import Header, { NavLink, NavLinks, PrimaryLink, LogoLink, NavToggle, DesktopNavLinks } from "../headers/light.js";
+import { Link } from "react-router-dom";
+import Header, {
+  NavBarLink,
+  NavLinks,
+  PrimaryLink,
+  LogoLink,
+  NavToggle,
+  DesktopNavLinks,
+} from "../headers/light.js";
 import ResponsiveVideoEmbed from "../../helpers/ResponsiveVideoEmbed.js";
 
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none`}
-  ${DesktopNavLinks} ${NavLink}, ${LogoLink} {
+  ${DesktopNavLinks} ${NavBarLink}, ${LogoLink} {
     ${tw`text-gray-100 hover:border-gray-300 hover:text-gray-300`}
   }
   ${NavToggle}.closed {
@@ -58,27 +65,29 @@ const StyledResponsiveVideoEmbed = styled(ResponsiveVideoEmbed)`
 export default () => {
   const navLinks = [
     <NavLinks key={1}>
-      <NavLink href="#">
-        About
-      </NavLink>
-      <NavLink href="#">
-        Blog
-      </NavLink>
-      <NavLink href="#">
-        Locations
-      </NavLink>
-      <NavLink href="#">
-        Pricing
-      </NavLink>
+      <NavBarLink>
+        <Link to="/">Home</Link>
+      </NavBarLink>
+      <NavBarLink>
+        <Link to="/jobs">Jobs</Link>
+      </NavBarLink>
+      <NavBarLink>
+        <Link to="#">Locations</Link>
+      </NavBarLink>
+      <NavBarLink>
+        <Link to="#">Pricing</Link>
+      </NavBarLink>
     </NavLinks>,
     <NavLinks key={2}>
-      <PrimaryLink href="/#">
-        Login
+      <PrimaryLink>
+        {" "}
+        <Link to="/login">Login</Link>
       </PrimaryLink>
-      <PrimaryLink href="/#">
-        Sign up
+      <PrimaryLink>
+        {" "}
+        <Link to="/signup">Sign up</Link>
       </PrimaryLink>
-    </NavLinks>
+    </NavLinks>,
   ];
 
   return (
@@ -88,7 +97,9 @@ export default () => {
         <StyledHeader links={navLinks} />
         <TwoColumn>
           <LeftColumn>
-            <Notification>We have now launched operations in Europe.</Notification>
+            <Notification>
+              We have now launched operations in Europe.
+            </Notification>
             <Heading>
               <span>Hire the best</span>
               <br />

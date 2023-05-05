@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import tw from "twin.macro";
@@ -83,7 +84,8 @@ export default ({
   };
 
   return (
-    <Container>
+
+    <Container id="faq">
       <Content>
         <TwoColumn>
           <Column tw="hidden lg:block w-5/12 flex-shrink-0">
