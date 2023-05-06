@@ -16,7 +16,7 @@ const Header = tw.header`
   max-w-screen-xl mx-auto
 `;
 
-export const NavLinks = tw.div`inline-block text-white`;
+export const NavLinks = tw.div`inline-block`;
 
 /* hocus: stands for "on hover or focus"
  * hocus:bg-primary-700 will apply the bg-primary-700 class on hover or focus
@@ -28,7 +28,7 @@ export const NavBarLink = tw.a`
 `;
 
 export const PrimaryLink = tw(NavBarLink)`
-  lg:mx-0
+  
   px-8 py-3 rounded bg-primary-500 text-gray-100
   hocus:bg-primary-700 hocus:text-gray-200 focus:shadow-outline
   border-b-0
@@ -90,11 +90,11 @@ export default ({
       </NavBarLink>
       <NavBarLink>
         {" "}
-        <Link to="/#">Pricing</Link>
+        <Link to="/candidate">Candidate</Link>
       </NavBarLink>
       <NavBarLink>
         {" "}
-        <Link to="/#">Contact Us</Link>
+        <Link to="/recruiter">Recruiter</Link>
       </NavBarLink>
       <NavLinks>
         <PrimaryLink css={roundedHeaderButton && tw`rounded-full mr-2`}>

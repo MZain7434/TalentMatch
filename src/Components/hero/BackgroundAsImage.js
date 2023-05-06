@@ -27,7 +27,7 @@ const Container = styled.div`
   background-image: url("https://images.unsplash.com/photo-1522071901873-411886a10004?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
 `;
 
-const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-primary-500 opacity-25`;
+const OpacityOverlay = tw.div`z-10 absolute inset-0 bg-primary-100 opacity-25`;
 
 const HeroContainer = tw.div`z-20 relative px-4 sm:px-8 max-w-screen-xl mx-auto`;
 const TwoColumn = tw.div`pt-24 pb-32 px-4 flex justify-between items-center flex-col lg:flex-row`;
@@ -72,10 +72,10 @@ export default () => {
         <Link to="/jobs">Jobs</Link>
       </NavBarLink>
       <NavBarLink>
-        <Link to="#">Locations</Link>
+        <Link to="/candidate">Candidate</Link>
       </NavBarLink>
       <NavBarLink>
-        <Link to="#">Pricing</Link>
+        <Link to="/recruiter">Recruiter</Link>
       </NavBarLink>
     </NavLinks>,
     <NavLinks key={2}>
