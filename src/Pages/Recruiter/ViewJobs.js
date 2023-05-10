@@ -158,11 +158,8 @@ const JobTile = (props) => {
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
           <Grid item>Role : {job.jobType}</Grid>
+          <Grid item>Company : {job.company}</Grid>
           <Grid item>Salary : &#8377; {job.salary} per month</Grid>
-          <Grid item>
-            Duration :{" "}
-            {job.duration !== 0 ? `${job.duration} month` : `Flexible`}
-          </Grid>
           <Grid item>Date Of Posting: {postedOn.toLocaleDateString()}</Grid>
           <Grid item>Number of Applicants: {job.maxApplicants}</Grid>
           <Grid item>

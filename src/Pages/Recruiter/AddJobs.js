@@ -11,10 +11,9 @@ import {
 } from "@material-ui/core";
 import axios from "axios";
 import ChipInput from "material-ui-chip-input";
-
 import { SetPopupContext } from "../../App.js";
-
 import apiList from "../../Components/lib/apiList.js";
+import { toast } from "react-toastify";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -35,6 +34,10 @@ const CreateJobs = (props) => {
 
   const [jobDetails, setJobDetails] = useState({
     title: "",
+    company: "",
+    minEducation: "",
+    minExperience: "",
+    maxExperience: "",
     maxApplicants: 100,
     maxPositions: 30,
     deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -42,6 +45,7 @@ const CreateJobs = (props) => {
       .substr(0, 16),
     skillsets: [],
     jobType: "Full Time",
+    location: "",
     duration: 0,
     salary: 0,
   });
@@ -62,13 +66,13 @@ const CreateJobs = (props) => {
         },
       })
       .then((response) => {
-        setPopup({
-          open: true,
-          severity: "success",
-          message: response.data.message,
-        });
+        toast.success("Job added succesfully");
         setJobDetails({
           title: "",
+          company: "",
+          minEducation: "",
+          minExperience: "",
+          maxExperience: "",
           maxApplicants: 100,
           maxPositions: 30,
           deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -76,6 +80,7 @@ const CreateJobs = (props) => {
             .substr(0, 16),
           skillsets: [],
           jobType: "Full Time",
+          location: "",
           duration: 0,
           salary: 0,
         });
@@ -132,6 +137,17 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
+                  <TextField
+                    label="Company"
+                    value={jobDetails.company}
+                    onChange={(event) =>
+                      handleInput("company", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
                   <ChipInput
                     className={classes.inputBox}
                     label="Skills"
@@ -157,6 +173,17 @@ const CreateJobs = (props) => {
                 </Grid>
                 <Grid item>
                   <TextField
+                    label="Min. Education"
+                    value={jobDetails.minEducation}
+                    onChange={(event) =>
+                      handleInput("minEducation", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
                     select
                     label="Job Type"
                     variant="outlined"
@@ -174,22 +201,57 @@ const CreateJobs = (props) => {
                 <Grid item>
                   <TextField
                     select
-                    label="Duration"
+                    label="Min. Experience"
                     variant="outlined"
-                    value={jobDetails.duration}
+                    value={jobDetails.minExperience}
                     onChange={(event) => {
-                      handleInput("duration", event.target.value);
+                      handleInput("minExperience", event.target.value);
                     }}
                     fullWidth
                   >
-                    <MenuItem value={0}>Flexible</MenuItem>
-                    <MenuItem value={1}>1 Month</MenuItem>
-                    <MenuItem value={2}>2 Months</MenuItem>
-                    <MenuItem value={3}>3 Months</MenuItem>
-                    <MenuItem value={4}>4 Months</MenuItem>
-                    <MenuItem value={5}>5 Months</MenuItem>
-                    <MenuItem value={6}>6 Months</MenuItem>
+                    <MenuItem value="Less than 1 Year">
+                      Less than 1 Year
+                    </MenuItem>
+                    <MenuItem value="1-2 years">1-2 years</MenuItem>
+                    <MenuItem value="2-4 years">2-4 years</MenuItem>
+                    <MenuItem value="4-6 years">4-6 years</MenuItem>
+                    <MenuItem value="6-8 years">6-8 years</MenuItem>
+                    <MenuItem value="8-10 years">8-10 years</MenuItem>
+                    <MenuItem value="10+ years">10+ years</MenuItem>
                   </TextField>
+                </Grid>
+                <Grid item>
+                  <TextField
+                    select
+                    label="Max. Experience"
+                    variant="outlined"
+                    value={jobDetails.maxExperience}
+                    onChange={(event) => {
+                      handleInput("maxExperience", event.target.value);
+                    }}
+                    fullWidth
+                  >
+                    <MenuItem value="Less than 1 Year">
+                      Less than 1 Year
+                    </MenuItem>
+                    <MenuItem value="1-2 years">1-2 years</MenuItem>
+                    <MenuItem value="2-4 years">2-4 years</MenuItem>
+                    <MenuItem value="4-6 years">4-6 years</MenuItem>
+                    <MenuItem value="6-8 years">6-8 years</MenuItem>
+                    <MenuItem value="8-10 years">8-10 years</MenuItem>
+                    <MenuItem value="10+ years">10+ years</MenuItem>
+                  </TextField>
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="Location"
+                    value={jobDetails.location}
+                    onChange={(event) =>
+                      handleInput("location", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
                 </Grid>
                 <Grid item>
                   <TextField
