@@ -97,13 +97,9 @@ export default () => {
         <SlantedBackground>Talent.</SlantedBackground>
       </Heading>
       <br />
-<<<<<<< HEAD
       <PrimaryAction>
   <Link to="/signup">Sign Up</Link>
 </PrimaryAction>
-=======
-      <PrimaryAction>Sign Up</PrimaryAction>
->>>>>>> 8b95165a726fdf2362cbc46f998dcc53736dbcfa
     </>,
     <>
       <Heading>
