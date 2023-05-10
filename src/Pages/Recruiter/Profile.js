@@ -35,6 +35,8 @@ const Profile = (props) => {
 
   const [profileDetails, setProfileDetails] = useState({
     name: "",
+    companyName: "",
+    designation : "",
     bio: "",
     contactNumber: "",
   });
@@ -89,7 +91,6 @@ const Profile = (props) => {
         contactNumber: "",
       };
     }
-
     axios
       .put(apiList.user, updatedDetails, {
         headers: {
@@ -144,6 +145,32 @@ const Profile = (props) => {
                   label="Name"
                   value={profileDetails.name}
                   onChange={(event) => handleInput("name", event.target.value)}
+                  className={classes.inputBox}
+                  variant="outlined"
+                  fullWidth
+                  style={{ width: "100%" }}
+                />
+              </Grid>
+              <Grid
+                item
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+              >
+                <TextField
+                  label="Company Name"
+                  value={profileDetails.companyName}
+                  onChange={(event) => handleInput("companyName", event.target.value)}
+                  className={classes.inputBox}
+                  variant="outlined"
+                  fullWidth
+                  style={{ width: "100%" }}
+                />
+                <TextField
+                  label="Designation"
+                  value={profileDetails.designation}
+                  onChange={(event) => handleInput("designation", event.target.value)}
                   className={classes.inputBox}
                   variant="outlined"
                   fullWidth

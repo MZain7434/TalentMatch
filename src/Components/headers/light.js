@@ -50,7 +50,7 @@ export const NavToggle = tw.button`
 export const MobileNavLinks = motion(styled.div`
   ${tw`lg:hidden z-10 fixed top-0 inset-x-0 mx-4 my-6 p-8 border text-center rounded-lg text-gray-900 bg-white`}
   ${NavLinks} {
-    ${tw`flex flex-col items-center`}
+    ${tw`flex! flex-col! items-center!`}
   }
 `);
 
@@ -96,17 +96,17 @@ export default ({
         {" "}
         <Link to="/recruiter">Recruiter</Link>
       </NavBarLink>
-      <NavLinks>
-        <PrimaryLink css={roundedHeaderButton && tw`rounded-full mr-2`}>
-          <Link to="/login">Log In</Link>
-        </PrimaryLink>
-        <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
-          <Link to="/signup">Sign Up</Link>
-        </PrimaryLink>
-      </NavLinks>
     </NavLinks>,
+    <NavLinks key={2}>
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full mr-2`}>
+        <Link to="/login">Log In</Link>
+      </PrimaryLink>
+      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
+        <Link to="/signup">Sign Up</Link>
+      </PrimaryLink>
+    </NavLinks>
   ];
-
+  
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
   const collapseBreakpointCss =
     collapseBreakPointCssMap[collapseBreakpointClass];
