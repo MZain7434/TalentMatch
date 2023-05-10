@@ -6,10 +6,12 @@ import { SectionHeading, Subheading as SubheadingBase } from "../Misc/Headings.j
 import { PrimaryButton as PrimaryButtonBase } from "../Misc/Buttons.js";
 import StatsIllustrationSrc from "../../images/stats-illustration.svg";
 import { ReactComponent as SvgDotPattern } from "../../images/dot-pattern.svg";
+import { Link } from "react-router-dom";
+
 
 const Container = tw.div`relative`;
 const TwoColumn = tw.div`flex flex-col md:flex-row justify-between max-w-screen-xl mx-auto py-20 md:py-24`;
-const Column = tw.div`w-full max-w-md mx-auto md:max-w-none md:mx-0`;
+const Column = tw.div`w-full max-w-md mx-4 pr-8 md:max-w-none md:mx-0`;
 const ImageColumn = tw(Column)`md:w-5/12 flex-shrink-0 h-80 md:h-auto relative`;
 const TextColumn = styled(Column)(props => [
   tw`md:w-7/12 mt-16 md:mt-0`,
@@ -46,9 +48,9 @@ export default ({
       We have been doing this <wbr /> since <span tw="text-primary-500">1999.</span>
     </>
   ),
-  description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-  primaryButtonText = "Learn More",
-  primaryButtonUrl = "https://timerse.com",
+  description = "We have a proven track record of connecting talented candidates with the right job opportunities. Our platform is designed to streamline the hiring process, making it easier for both candidates and recruiters to find their perfect match.",
+  primaryButtonText = "Jobs",
+  primaryButtonUrl = "/jobs",
   imageSrc = StatsIllustrationSrc,
   imageCss = null,
   imageContainerCss = null,
@@ -62,16 +64,16 @@ export default ({
   //Change the statistics variable as you like, add or delete objects
   const defaultStatistics = [
     {
-      key: "Clients",
-      value: "2282+"
-    },
-    {
-      key: "Projects",
-      value: "3891+"
-    },
-    {
-      key: "Awards",
+      key: "Jobs",
       value: "1000+"
+    },
+    {
+      key: "Candidates",
+      value: "2000+"
+    },
+    {
+      key: "Recruiters",
+      value: "250+"
     }
   ];
 
@@ -97,8 +99,10 @@ export default ({
                 </Statistic>
               ))}
             </Statistics>
-            <PrimaryButton as="a" href={primaryButtonUrl}>
+            <PrimaryButton>
+              <Link to={primaryButtonUrl}>
               {primaryButtonText}
+              </Link>
             </PrimaryButton>
           </TextContent>
         </TextColumn>

@@ -46,7 +46,7 @@ export default ({ headingText = "Terms And Condition" }) => {
           </HeadingRow>
           <Text>
 
-            <p>Last updated: April 21, 2048</p>
+            <p>Last updated: April 10, 2023</p>
 
             <p>Please read these terms and conditions carefully before using Our Service.</p>
 
@@ -70,10 +70,10 @@ export default ({ headingText = "Terms And Condition" }) => {
               </li>
               <li>
                 <strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement)
-                refers to Treact Inc., Navi Mumbai.
+                refers to TalentMatch., Lahore, Pakistan.
               </li>
               <li>
-                <strong>Country</strong> refers to: Maharashtra, India
+                <strong>Country</strong> refers to: Lahore, Pakistan
               </li>
               <li>
                 <strong>Service</strong> refers to the Website.
@@ -88,7 +88,7 @@ export default ({ headingText = "Terms And Condition" }) => {
                 available by the Service.
               </li>
               <li>
-                <strong>Website</strong> refers to Treact, accessible from https://treact.com
+                <strong>Website</strong> refers to TalentMatch
               </li>
               <li>
                 <strong>You</strong> means the individual accessing or using the Service, or the company, or other legal
@@ -110,10 +110,6 @@ export default ({ headingText = "Terms And Condition" }) => {
             <p>
               By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree
               with any part of these Terms and Conditions then You may not access the Service.
-            </p>
-            <p>
-              You represent that you are over the age of 18. The Company does not permit those under 18 to use the
-              Service.
             </p>
             <p>
               Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the
@@ -163,11 +159,6 @@ export default ({ headingText = "Terms And Condition" }) => {
               connection with any provision of this Terms), even if the Company or any supplier has been advised of the
               possibility of such damages and even if the remedy fails of its essential purpose.
             </p>
-            <p>
-              Some states do not allow the exclusion of implied warranties or limitation of liability for incidental or
-              consequential damages, which means that some of the above limitations may not apply. In these states, each
-              party's liability will be limited to the greatest extent permitted by law.
-            </p>
 
             <h1>"AS IS" and "AS AVAILABLE" Disclaimer</h1>
             <p>
@@ -211,36 +202,6 @@ export default ({ headingText = "Terms And Condition" }) => {
               If You have any concern or dispute about the Service, You agree to first try to resolve the dispute
               informally by contacting the Company.
             </p>
-
-            <h1>For European Union (EU) Users</h1>
-            <p>
-              If You are a European Union consumer, you will benefit from any mandatory provisions of the law of the
-              country in which you are resident in.
-            </p>
-
-            <h1>United States Legal Compliance</h1>
-            <p>
-              You represent and warrant that (i) You are not located in a country that is subject to the United States
-              government embargo, or that has been designated by the United States government as a “terrorist
-              supporting” country, and (ii) You are not listed on any United States government list of prohibited or
-              restricted parties.
-            </p>
-
-            <h1>Severability and Waiver</h1>
-            <h2>Severability</h2>
-            <p>
-              If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and
-              interpreted to accomplish the objectives of such provision to the greatest extent possible under
-              applicable law and the remaining provisions will continue in full force and effect.
-            </p>
-
-            <h2>Waiver</h2>
-            <p>
-              Except as provided herein, the failure to exercise a right or to require performance of an obligation
-              under this Terms shall not effect a party's ability to exercise such right or require such performance at
-              any time thereafter nor shall be the waiver of a breach constitute a waiver of any subsequent breach.
-            </p>
-
             <h1>Translation Interpretation</h1>
             <p>
               These Terms and Conditions may have been translated if We have made them available to You on our Service.
@@ -263,8 +224,8 @@ export default ({ headingText = "Terms And Condition" }) => {
             <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
 
             <ul>
-              <li>By email: support@example.com</li>
-              <li>By phone number: 408.996.1010</li>
+              <li>By email: support@TalentMatch.com</li>
+              <li>By phone number: 0300-1234567</li>
             </ul>
           </Text>
         </ContentWithPaddingXl>

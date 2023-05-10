@@ -12,6 +12,10 @@ import FAQ from "../../Components/faq/SimpleWithSideImage.js";
 import ContactUsForm from "../../Components/forms/TwoColContactUsWithIllustrationFullForm.js";
 import Footer from "../../Components/footer/MiniCenteredFooter.js";
 import customerSupportIllustrationSrc from "../../images/customer-support-illustration.svg";
+import DP1 from "../../images/testimonial1_DP.png"
+import DP2 from "../../images/testimonial2_DP.png"
+import Slick2 from "../../images/testimonial_Slick1.png"
+import Slick1 from "../../images/testimonial_Slick2.png"
 
 export default () => (
   <AnimationRevealPage>
@@ -27,27 +31,23 @@ export default () => (
           Our Clients <span tw="text-primary-500">Love Us.</span>
         </>
       }
-      description="Here are what some of our amazing customers are saying about our marketing professionals. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      description = "Don't just take our word for it. Hear what our satisfied candidates and recruiters have to say about their experience with TalentMatch."
       testimonials={[
         {
-          imageSrc:
-            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
-          profileImageSrc:
-            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
+          imageSrc: Slick1,
+          profileImageSrc: DP1,
           quote:
-            "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+            "The completeness scoring feature on TalentMatch  was a game-changer for us. It saved us countless hours by allowing us to quickly assess the quality of candidate profiles. We found exceptional talent through their platform and successfully filled key positions in our organization.",
           customerName: "Charlotte Hale",
-          customerTitle: "CEO, Tesla Inc."
+          customerTitle: "CEO, Delos Inc."
         },
         {
-          imageSrc:
-            "https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&q=80",
-          profileImageSrc:
-            "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
+          imageSrc: Slick2,
+          profileImageSrc: DP2,
           quote:
-            "Sinor Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+            "I have been using TalentMatch for my hiring needs, and I'm impressed with the level of talent they have in their database. The certification aggregation feature helped us identify candidates with specialized skills, giving us a competitive edge in our industry.",
           customerName: "Adam Cuppy",
-          customerTitle: "Founder, Nestle"
+          customerTitle: "Founder, EventsNYC"
         }
       ]}
       textOnLeft={true}
@@ -59,7 +59,7 @@ export default () => (
       subheading="FAQs"
       heading={
         <>
-          Do you have <span tw="text-primary-500">Questions ?</span>
+          <span tw="text-primary-500">Got Questions ?</span>
         </>
       }
     />

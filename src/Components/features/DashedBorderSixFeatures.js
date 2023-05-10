@@ -9,14 +9,11 @@ import defaultCardImage from "../../images/shield-icon.svg";
 
 import { ReactComponent as SvgDecoratorBlob3 } from "../../images/svg-decorator-blob-3.svg";
 
-import SupportIconImage from "../../images/support-icon.svg";
+import DataAnalytics from "../../images/data-analytics.svg";
 import ShieldIconImage from "../../images/shield-icon.svg";
-import CustomizeIconImage from "../../images/customize-icon.svg";
-import FastIconImage from "../../images/fast-icon.svg";
-import ReliableIconImage from "../../images/reliable-icon.svg";
-import SimpleIconImage from "../../images/simple-icon.svg";
+import JobMatch from "../../images/job-match.svg";
 
-const Container = tw.div`relative`;
+const Container = tw.div`relative m-0 p-0`;
 
 const ThreeColumnContainer = styled.div`
   ${tw`flex flex-col items-center md:items-stretch md:flex-row flex-wrap md:justify-center max-w-screen-xl mx-auto py-20 md:py-24`}
@@ -65,14 +62,19 @@ export default () => {
   const cards = [
     {
       imageSrc: ShieldIconImage,
-      title: "Ads Management",
-      description: "We create and manage ads that you need, from creation to deployment. Lorem ipsum donor sit amet consicou."
+      title: "Data Extraction",
+      description: "Candidates can easily upload their CV or enter textual data into our platform. We utilize advanced data extraction techniques to extract relevant information accurately."
     },
-    { imageSrc: SupportIconImage, title: "Video Marketing" },
-    { imageSrc: CustomizeIconImage, title: "Customer Relation" },
-    { imageSrc: ReliableIconImage, title: "Product Outreach" },
-    { imageSrc: FastIconImage, title: "PR Campaign" },
-    { imageSrc: SimpleIconImage, title: "Product Expansion" }
+    { 
+      imageSrc: JobMatch, 
+      title: "Job Matching",
+      description: "Our advanced job matching algorithm analyzes candidate profiles and job descriptions to provide tailored recommendations. We ensure that the right candidates are connected with the right job opportunities."
+    },
+    { 
+      imageSrc: DataAnalytics, 
+      title: "Real-time Analytics",
+      description: "Our platform provides real-time analytics to both candidates and recruiters. Candidates can track the progress of their applications."
+    },
   ];
 
   return (

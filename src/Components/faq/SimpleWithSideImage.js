@@ -41,8 +41,8 @@ const Answer = motion(tw.dd`pointer-events-none text-sm sm:text-base leading-rel
 export default ({
   subheading = "",
   heading = "Questions",
-  description = "Here are some frequently asked questions about our hotels from our loving customers. Should you have any other questions, feel free to reach out via the contact form below.",
-  imageSrc = "https://images.unsplash.com/photo-1579427421635-a0015b804b2e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
+  description = "Here’re the answers to the frequently asked questions.",
+  imageSrc = "",
   imageContain = false,
   imageShadow = true,
   faqs = null
@@ -53,24 +53,24 @@ export default ({
    */
   const defaultFaqs = [
     {
-      question: "Is lunch provided free of cost ?",
+      question: "How do I create a candidate profile on your platform ?",
       answer:
-        "Yes, it is, if you have a membership with us. Otherwise it is charged as per the menu. Some limits do apply as to how much items can be included in your lunch. This limit is enough for any one person and merely exists to discourage abusal of the system."
+        "To create a candidate profile, simply sign up on our website and follow the step-by-step instructions. You can either enter your textual data or upload your CV, and our system will extract the relevant information to build your profile."
     },
     {
-      question: "Do you have 2 Bedroom suites ?",
+      question: "How is the completeness score calculated for candidate profiles ?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "The completeness score is calculated based on the information provided in your profile, including work experience, education, skills, and certifications."
     },
     {
-      question: "Are Wi-Fi costs included in the price ?",
+      question: "Can recruiters access my complete profile ?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "Recruiters can view relevant parts of your profile that are necessary for job matching and evaluation. However, your personal contact information is not disclosed to recruiters."
     },
     {
-      question: "Where can I reach you for support ?",
+      question: "How can I track the progress of my job applications ?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        "Once you've applied for a job through our platform, you can track the progress of your applications in your candidate dashboard."
     }
   ];
 

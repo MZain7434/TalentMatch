@@ -44,7 +44,7 @@ export default ({ headingText = "Privacy Policy" }) => {
             <Heading>{headingText}</Heading>
           </HeadingRow>
           <Text>
-            <p>Last updated: April 05, 2023</p>
+            <p>Last updated: April 10, 2023</p>
 
             <p>
               This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your
@@ -78,7 +78,7 @@ export default ({ headingText = "Privacy Policy" }) => {
               <li>
                 <p>
                   <strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement)
-                  refers to Treact.
+                  refers to TalentMatch.
                 </p>
               </li>
               <li>
@@ -91,7 +91,7 @@ export default ({ headingText = "Privacy Policy" }) => {
                 Service.
               </li>
               <li>
-                <strong>Website</strong> refers to Treact, accessible from 
+                <strong>Website</strong> refers to TalentMatch, accessible from 
               </li>{" "}
               <li>
                 <strong>Service</strong> refers to the Website.
@@ -138,8 +138,8 @@ export default ({ headingText = "Privacy Policy" }) => {
               limited to:
             </p>
             <ul>
-              <li>Email address</li> <li>First name and last name</li> <li>Phone number</li>{" "}
-              <li>Address, State, Province, ZIP/Postal code, City</li> <li>Usage Data</li>
+              <li>Email address</li> <li>Name</li> <li>Phone number</li>{" "}
+              <li>Address, State, City</li> <li>Employment History</li><li>Educational Background</li><li>Certifications</li>
             </ul>
 
             <h3>Usage Data</h3>
@@ -213,10 +213,7 @@ export default ({ headingText = "Privacy Policy" }) => {
                 </p>
               </li>
             </ul>
-            <p>
-              For more information about the cookies we use and your choices regarding cookies, please visit our Cookies
-              Policy.
-            </p>
+            
 
             <h2>Use of Your Personal Data</h2>
             <p>The Company may use Personal Data for the following purposes:</p>
@@ -295,13 +292,9 @@ export default ({ headingText = "Privacy Policy" }) => {
               functionality of Our Service, or We are legally obligated to retain this data for longer time periods.
             </p>
 
-            <h2>Transfer of Your Personal Data</h2>
+            <h2>Recruiters</h2>
             <p>
-              Your information, including Personal Data, is processed at the Company's operating offices and in any
-              other places where the parties involved in the processing are located. It means that this information may
-              be transferred to — and maintained on — computers located outside of Your state, province, country or
-              other governmental jurisdiction where the data protection laws may differ than those from Your
-              jurisdiction.
+            The information provided by recruiters, such as job descriptions and preferences, is used to recommend candidates that best match their requirements. Recruiters may have access to candidate information relevant to their job listings.
             </p>
             <p>
               Your consent to this Privacy Policy followed by Your submission of such information represents Your
@@ -343,19 +336,6 @@ export default ({ headingText = "Privacy Policy" }) => {
               The security of Your Personal Data is important to Us, but remember that no method of transmission over
               the Internet, or method of electronic storage is 100% secure. While We strive to use commercially
               acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.
-            </p>
-
-            <h1>Children's Privacy</h1>
-            <p>
-              Our Service does not address anyone under the age of 13. We do not knowingly collect personally
-              identifiable information from anyone under the age of 13. If You are a parent or guardian and You are
-              aware that Your child has provided Us with Personal Data, please contact Us. If We become aware that We
-              have collected Personal Data from anyone under the age of 13 without verification of parental consent, We
-              take steps to remove that information from Our servers.
-            </p>
-            <p>
-              If We need to rely on consent as a legal basis for processing Your information and Your country requires
-              consent from a parent, We may require Your parent's consent before We collect and use that information.
             </p>
 
             <h1>Links to Other Websites</h1>

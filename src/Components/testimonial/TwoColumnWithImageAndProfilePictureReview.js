@@ -11,7 +11,6 @@ import { ReactComponent as ChevronLeftIcon } from "feather-icons/dist/icons/chev
 import { ReactComponent as ChevronRightIcon } from "feather-icons/dist/icons/chevron-right.svg";
 import { ReactComponent as SvgDecoratorBlob1 } from "../../images/svg-decorator-blob-4.svg";
 import { ReactComponent as SvgDecoratorBlob2 } from "../../images/svg-decorator-blob-5.svg";
-
 import "slick-carousel/slick/slick.css";
 
 const Container = tw.div`relative`;
@@ -68,7 +67,7 @@ const DecoratorBlob2 = tw(
 export default ({
   subheading = "",
   heading = "Testimonials",
-  description = "Here are what some of our amazing customers are saying about our hotels & tours. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+  description = "Don't just take our word for it. Hear what our satisfied candidates and recruiters have to say about their experience with TalentMatch.",
   testimonials = null,
   textOnLeft = false
 }) => {
@@ -81,9 +80,9 @@ export default ({
       imageSrc:
         "https://images.unsplash.com/photo-1512100356356-de1b84283e18?ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&q=80",
       profileImageSrc:
-        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3.25&w=512&h=512&q=80",
+        "../../images/testimonial1_DP.png",
       quote:
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+        "The completeness scoring feature on TalentMatch  was a game-changer for us. It saved us countless hours by allowing us to quickly assess the quality of candidate profiles. We found exceptional talent through their platform and successfully filled key positions in our organization.",
       customerName: "Charlotte Hale",
       customerTitle: "CEO, Delos Inc."
     },
@@ -91,9 +90,9 @@ export default ({
       imageSrc:
         "https://images.unsplash.com/photo-1523952578875-e6bb18b26645?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1024&q=80",
       profileImageSrc:
-        "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=512&h=512&q=80",
+        "../../images/testimonial2_DP.png",
       quote:
-        "Sinor Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.",
+        "I have been using [Your Company Name] for my hiring needs, and I'm impressed with the level of talent they have in their database. The certification aggregation feature helped us identify candidates with specialized skills, giving us a competitive edge in our industry.",
       customerName: "Adam Cuppy",
       customerTitle: "Founder, EventsNYC"
     }
@@ -128,7 +127,7 @@ export default ({
                 ))}
               </TestimonialImageSlider>
               <TextContainer textOnLeft={textOnLeft}>
-                <HeadingInfo tw="hidden lg:block" subheading={subheading} heading={heading} description={description} />
+                <HeadingInfo tw=" lg:block" subheading={subheading} heading={heading} description={description} />
                 <TestimonialTextSlider arrows={false} ref={setTextSliderRef} asNavFor={imageSliderRef} fade={true}>
                   {testimonials.map((testimonial, index) => (
                     <TestimonialText key={index}>

@@ -5,7 +5,7 @@ import { createContext, useState } from "react";
 import GlobalStyles from "./styles/GlobalStyles.js";
 import { Route, Routes, Switch } from "react-router-dom";
 
-import AgencyLandingPage from "../src/Pages/Landing/AgencyLandingPage.js";
+import LandingPage from "../src/Pages/Landing/LandingPage.js";
 
 import { css } from "styled-components/macro"; //eslint-disable-line
 import Login from "./Pages/login/Login.js";
@@ -25,7 +25,7 @@ const App = () => {
     <>
         <GlobalStyles />
         <Routes>
-          <Route path="/" element={<AgencyLandingPage />} />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/jobs" element={<Jobs />} />
