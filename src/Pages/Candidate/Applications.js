@@ -63,7 +63,7 @@ const ApplicationTile = (props) => {
     axios
       .get(`${apiList.rating}?id=${application.job._id}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
         },
       })
       .then((response) => {
@@ -88,7 +88,7 @@ const ApplicationTile = (props) => {
         { rating: rating, jobId: application.job._id },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
           },
         }
       )

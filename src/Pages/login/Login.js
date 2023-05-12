@@ -1,14 +1,17 @@
-import React, { useState, useContext } from "react";
-import AnimationRevealPage from "../../helpers/AnimationRevealPage.js";
-import { Container as ContainerBase } from "../../Components/Misc/Layouts.js";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 import tw from "twin.macro";
 import styled from "styled-components";
 import { css } from "styled-components/macro"; //eslint-disable-line
+import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import AnimationRevealPage from "../../helpers/AnimationRevealPage.js";
+import { Container as ContainerBase } from "../../Components/Misc/Layouts.js";
 import illustration from "../../images/login-illustration.svg";
 import logo from "../../images/logo.svg";
-import { ReactComponent as LoginIcon } from "feather-icons/dist/icons/log-in.svg";
-import { Link } from "react-router-dom";
-import axios from "axios";
 import apiList from "../../Components/lib/apiList.js";
 
 const Container = tw(
@@ -45,86 +48,96 @@ export default ({
   headingText = "Sign In To TalentMatch",
   submitButtonText = "Sign In",
   SubmitButtonIcon = LoginIcon,
-  forgotPasswordUrl = "#",
+  forgotPasswordUrl = "/forgotpassword",
   signupUrl = "/signup",
   onSubmit,
 }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    
+
     axios
       .post(apiList.login, { email, password })
       .then((response) => {
-          localStorage.setItem("token", response.data.token);
-          localStorage.setItem("type", response.data.type);
-
-          //response from backend if okk then redirect use that logic
-      console.log(email);
-      
+        localStorage.setItem("TalentMatch_token", response.data.token);
+        localStorage.setItem("TalentMatch_type", response.data.type);
+        localStorage.setItem("Talent_Match_name", response.data.name);
+        if (response.data.type === "candidate") {
+          navigate("/candidate");
+        } else {
+          navigate("/recruiter");
+        }
       })
       .catch((err) => {
-        console.log(err.response);
+        if (err.response.data.message === "User does not exist") {
+          toast.error("Incorrect Email");
+        } else {
+          toast.error("Incorrect Password");
+        }
       });
   };
   return (
-    <AnimationRevealPage>
-      <Container>
-        <Content>
-          <MainContainer>
-            <LogoLink>
-              <Link to={logoLinkUrl}>
-                <LogoImage src={logo} />
-              </Link>
-            </LogoLink>
-            <MainContent>
-              <Heading>{headingText}</Heading>
-              <FormContainer>
-                <Form onSubmit={handleFormSubmit}>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                  />
-                  <Input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                  />
-                  <SubmitButton type="submit">
-                    <SubmitButtonIcon className="icon" />
-                    <span className="text">{submitButtonText}</span>
-                  </SubmitButton>
-                </Form>
-                <p tw="mt-6 text-xs text-gray-600 text-center">
-                  <Link to={forgotPasswordUrl}>
-                    <span tw="border-b border-gray-500 border-dotted">
-                      Forgot Password ?
-                    </span>
-                  </Link>
-                </p>
-                <p tw="mt-8 text-sm text-gray-600 text-center">
-                  Don't have an account?{" "}
-                  <Link to={signupUrl}>
-                    <span tw="border-b border-gray-500 border-dotted">
-                      Sign Up
-                    </span>
-                  </Link>
-                </p>
-              </FormContainer>
-            </MainContent>
-          </MainContainer>
-          <IllustrationContainer>
-            <IllustrationImage imageSrc={illustrationImageSrc} />
-          </IllustrationContainer>
-        </Content>
-      </Container>
-    </AnimationRevealPage>
+    <>
+      <ToastContainer />
+      <AnimationRevealPage>
+        <Container>
+          <Content>
+            <MainContainer>
+              <LogoLink>
+                <Link to={logoLinkUrl}>
+                  <LogoImage src={logo} />
+                </Link>
+              </LogoLink>
+              <MainContent>
+                <Heading>{headingText}</Heading>
+                <FormContainer>
+                  <Form onSubmit={handleFormSubmit}>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      value={email}
+                    />
+                    <Input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                    />
+                    <SubmitButton type="submit">
+                      <SubmitButtonIcon className="icon" />
+                      <span className="text">{submitButtonText}</span>
+                    </SubmitButton>
+                  </Form>
+                  <p tw="mt-6 text-xs text-gray-600 text-center">
+                    <Link to={forgotPasswordUrl}>
+                      <span tw="border-b border-gray-500 border-dotted">
+                        Forgot Password ?
+                      </span>
+                    </Link>
+                  </p>
+                  <p tw="mt-8 text-sm text-gray-600 text-center">
+                    Don't have an account?{" "}
+                    <Link to={signupUrl}>
+                      <span tw="border-b border-gray-500 border-dotted">
+                        Sign Up
+                      </span>
+                    </Link>
+                  </p>
+                </FormContainer>
+              </MainContent>
+            </MainContainer>
+            <IllustrationContainer>
+              <IllustrationImage imageSrc={illustrationImageSrc} />
+            </IllustrationContainer>
+          </Content>
+        </Container>
+      </AnimationRevealPage>
+    </>
   );
 };

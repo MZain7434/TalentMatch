@@ -94,7 +94,7 @@ const Profile = (props) => {
     axios
       .put(apiList.user, updatedDetails, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
         },
       })
       .then((response) => {
