@@ -18,7 +18,7 @@ import BackgroundImage from "../../images/hero-Background-Image.jpg";
 const StyledHeader = styled(Header)`
   ${tw`pt-8 max-w-none`}
   ${DesktopNavLinks} {
-    ${tw`text-white hover:border-gray-300 hover:text-gray-300`}
+    ${tw`text-white! hover:border-gray-300 hover:text-gray-300`}
 }
 
 ${NavBarLink}, ${LogoLink} {
@@ -57,37 +57,59 @@ const SlantedBackground = styled.span`
 `;
 
 const PrimaryAction = tw.button`px-8 py-3 mt-10 text-sm sm:text-base sm:mt-16 sm:px-8 sm:py-4 bg-primary-500 text-white font-bold rounded shadow transition duration-300 hocus:bg-primary-500 hocus:text-gray-100 focus:shadow-outline`;
-export default () => {
-  const navLinks = [
+//const IsLoggedIn = localStorage.getItem("TalentMatch_token");
 
-    <NavLinks key={1}>
+export default ({IsLoggedIn, type, }) => {
+  // const navLinks = [
+
+  //   <NavLinks key={1}>
       
 
-      <NavBarLink>
-        <Link to="/">Home</Link>
-      </NavBarLink>
-      <NavBarLink>
-        <Link to="/jobs">Jobs</Link>
-      </NavBarLink>
-      <NavBarLink>
-        <Link to="/candidate">Candidate</Link>
-      </NavBarLink>
-      <NavBarLink>
-        <Link to="/recruiter">Recruiter</Link>
-      </NavBarLink>
+  //     <NavBarLink>
+  //       <Link to="/">Home</Link>
+  //     </NavBarLink>
+  //     <NavBarLink>
+  //       <Link to="/jobs">Jobs</Link>
+  //     </NavBarLink>
+  //     <NavBarLink>
+  //       <Link to="/candidate">Candidate</Link>
+  //     </NavBarLink>
+  //     <NavBarLink>
+  //       <Link to="/recruiter">Recruiter</Link>
+  //     </NavBarLink>
       
-    </NavLinks>,
-    <NavLinks key={2}>
-      <PrimaryLink>
-        {" "}
-        <Link to="/login">Login</Link>
-      </PrimaryLink>
-      <PrimaryLink>
-        {" "}
-        <Link to="/signup">Sign up</Link>
-      </PrimaryLink>
-    </NavLinks>,
-  ];
+  //   </NavLinks>,
+  //   // <NavLinks key={2}>
+  //   //   <PrimaryLink>
+  //   //     {" "}
+  //   //     <Link to="/login">Login</Link>
+  //   //   </PrimaryLink>
+  //   //   <PrimaryLink>
+  //   //     {" "}
+  //   //     <Link to="/signup">Sign up</Link>
+  //   //   </PrimaryLink>
+  //   // </NavLinks>,
+  // ];
+  // if (IsLoggedIn) {
+  //   navLinks.push(
+  //     <NavLinks key={2}>
+  //       <PrimaryLink >
+  //         <Link to="/logout">Log Out</Link>
+  //       </PrimaryLink>
+  //     </NavLinks>
+  //   );
+  // } else {
+  //   navLinks.push(
+  //     <NavLinks key={2}>
+  //       <PrimaryLink >
+  //         <Link to="/login">Log In</Link>
+  //       </PrimaryLink>
+  //       <PrimaryLink >
+  //         <Link to="/signup">Sign Up</Link>
+  //       </PrimaryLink>
+  //     </NavLinks>
+  //   );
+  // }
   const [headingIndex, setHeadingIndex] = useState(0);
   const headings = [
     <>
@@ -119,12 +141,12 @@ export default () => {
 
     return () => clearInterval(intervalId);
   }, [headingIndex]);
-
+//links={navLinks}
   return (
     <Container>
       <OpacityOverlay />
       <HeroContainer>
-        <StyledHeader links={navLinks} />
+        <StyledHeader  IsLoggedIn={IsLoggedIn} type={type}/> 
         <TwoColumn>
           <LeftColumn>
             {headings[headingIndex]}

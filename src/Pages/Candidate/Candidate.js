@@ -35,6 +35,8 @@ const TabContent = tw(
 
 const Click = tw.div` flex flex-col w-11/12 h-full`;
 const heading = "Welcome to TalentMatch";
+const IsLoggedIn = localStorage.getItem("TalentMatch_token");
+const type = localStorage.getItem("TalentMatch_type");
 export default ({
   tabs = {
     Profile: {
@@ -66,7 +68,7 @@ export default ({
 
   return (
     <AnimationRevealPage>
-      <Header />
+      <Header IsLoggedIn={IsLoggedIn} type={type}/>
 
       <HeadingHeader>{heading}</HeadingHeader>
       <HeaderRow>

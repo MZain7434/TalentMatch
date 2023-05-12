@@ -13,6 +13,7 @@ import { Container as ContainerBase } from "../../Components/Misc/Layouts.js";
 import illustration from "../../images/login-illustration.svg";
 import logo from "../../images/logo.svg";
 import apiList from "../../Components/lib/apiList.js";
+import Header from "../../Components/headers/light.js";
 
 const Container = tw(
   ContainerBase
@@ -50,12 +51,9 @@ export default ({
   SubmitButtonIcon = LoginIcon,
   forgotPasswordUrl = "/forgotpassword",
   signupUrl = "/signup",
-  onSubmit,
 }) => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -65,10 +63,11 @@ export default ({
         localStorage.setItem("TalentMatch_token", response.data.token);
         localStorage.setItem("TalentMatch_type", response.data.type);
         localStorage.setItem("Talent_Match_name", response.data.name);
+        
         if (response.data.type === "candidate") {
-          navigate("/candidate");
+          window.location.href ='/candidate';
         } else {
-          navigate("/recruiter");
+          window.location.href ='/recruiter';
         }
       })
       .catch((err) => {
@@ -78,11 +77,13 @@ export default ({
           toast.error("Incorrect Password");
         }
       });
-  };
-  return (
-    <>
+    };
+    return (
+      <>
       <ToastContainer />
       <AnimationRevealPage>
+
+
         <Container>
           <Content>
             <MainContainer>

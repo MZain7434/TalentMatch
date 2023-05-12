@@ -17,9 +17,11 @@ import DP2 from "../../images/testimonial2_DP.png"
 import Slick2 from "../../images/testimonial_Slick1.png"
 import Slick1 from "../../images/testimonial_Slick2.png"
 
+const IsLoggedIn = localStorage.getItem("TalentMatch_token");
+const type = localStorage.getItem("TalentMatch_type");
 export default () => (
   <AnimationRevealPage>
-    <Hero />
+    <Hero IsLoggedIn={IsLoggedIn} type={type}/>
     <MainFeature />
     <Features />
     <MainFeature2 />

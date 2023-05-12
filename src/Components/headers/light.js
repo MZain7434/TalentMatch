@@ -9,7 +9,7 @@ import useAnimatedNavToggler from "../../helpers/useAnimatedNavToggler.js";
 import logo from "../../images/logo.svg";
 import { ReactComponent as MenuIcon } from "feather-icons/dist/icons/menu.svg";
 import { ReactComponent as CloseIcon } from "feather-icons/dist/icons/x.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header = tw.header`
   flex justify-between items-center
@@ -57,27 +57,31 @@ export const MobileNavLinks = motion(styled.div`
 export const DesktopNavLinks = tw.nav`
   hidden lg:flex flex-1 justify-between items-center
 `;
-
+//const IsLoggedIn = localStorage.getItem("TalentMatch_token");
 export default ({
+  IsLoggedIn,
+  type,
   roundedHeaderButton = false,
   logoLink,
   links,
   className,
   collapseBreakpointClass = "lg",
 }) => {
-  /*
-   * This header component accepts an optionals "links" prop that specifies the links to render in the navbar.
-   * This links props should be an array of "NavLinks" components which is exported from this file.
-   * Each "NavLinks" component can contain any amount of "NavLink" component, also exported from this file.
-   * This allows this Header to be multi column.
-   * So If you pass only a single item in the array with only one NavLinks component as root, you will get 2 column header.
-   * Left part will be LogoLink, and the right part will be the the NavLinks component you
-   * supplied.
-   * Similarly if you pass 2 items in the links array, then you will get 3 columns, the left will be "LogoLink", the center will be the first "NavLinks" component in the array and the right will be the second "NavLinks" component in the links array.
-   * You can also choose to directly modify the links here by not passing any links from the parent component and
-   * changing the defaultLinks variable below below.
-   * If you manipulate links here, all the styling on the links is already done for you. If you pass links yourself though, you are responsible for styling the links or use the helper styled components that are defined here (NavLink)
-   */
+  const navigate = useNavigate("");
+  const handleLogout = () => {
+    // Clear local storage
+    localStorage.clear();
+    // Redirect to home page
+    
+  };
+  if(type=="candidate"){
+    var menuURL = "/candidate";
+    var menuName = "Candidate"; 
+  }if(type=="recruiter"){
+    var menuURL = "/recruiter";
+    var menuName = "Recruiter"; 
+
+  }
   const defaultLinks = [
     <NavLinks key={1}>
       <NavBarLink>
@@ -90,23 +94,30 @@ export default ({
       </NavBarLink>
       <NavBarLink>
         {" "}
-        <Link to="/candidate">Candidate</Link>
-      </NavBarLink>
-      <NavBarLink>
-        {" "}
-        <Link to="/recruiter">Recruiter</Link>
+        <Link to={menuURL}>{menuName}</Link>
       </NavBarLink>
     </NavLinks>,
-    <NavLinks key={2}>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full mr-2`}>
-        <Link to="/login">Log In</Link>
-      </PrimaryLink>
-      <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
-        <Link to="/signup">Sign Up</Link>
-      </PrimaryLink>
-    </NavLinks>
   ];
-  
+  if (IsLoggedIn) {
+    defaultLinks.push(
+      <NavLinks key={2}>
+        <PrimaryLink css={roundedHeaderButton && tw`rounded-full`} onClick={handleLogout}>
+          <a href="/">Log Out</a>
+        </PrimaryLink>
+      </NavLinks>
+    );
+  } else {
+    defaultLinks.push(
+      <NavLinks key={2}>
+        <PrimaryLink css={roundedHeaderButton && tw`rounded-full mr-2`}>
+          <Link to="/login">Log In</Link>
+        </PrimaryLink>
+        <PrimaryLink css={roundedHeaderButton && tw`rounded-full`}>
+          <Link to="/signup">Sign Up</Link>
+        </PrimaryLink>
+      </NavLinks>
+    );
+  }
   const { showNavLinks, animation, toggleNavbar } = useAnimatedNavToggler();
   const collapseBreakpointCss =
     collapseBreakPointCssMap[collapseBreakpointClass];

@@ -15,11 +15,15 @@ const JobContainer = tw(
   ContainerBase
 )`h-full bg-primary-500 text-white font-medium flex justify-center items-center m-8 rounded-lg`;
 
+const IsLoggedIn = localStorage.getItem("TalentMatch_token");
+const type = localStorage.getItem("TalentMatch_type");
+
 
 const SearchBars = () => {
   return (
     <AnimationRevealPage>
-      <Header />
+            <Header IsLoggedIn={IsLoggedIn} type={type}/>
+
       <Filter/>
       <JobContainer>
         <ListOfJobs/>

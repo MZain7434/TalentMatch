@@ -31,10 +31,13 @@ const TabControl = styled.div`
 
 const TabContent = tw(
   motion.div
-)`mt-6 flex flex-wrap sm:-mr-10 md:-mr-6 lg:-mr-12`;
+  )`mt-6 flex flex-wrap sm:-mr-10 md:-mr-6 lg:-mr-12`;
+  
+  const Click = tw.div` flex flex-col w-11/12 h-full`;
+  const heading = "Welcome to TalentMatch";
+  const IsLoggedIn = localStorage.getItem("TalentMatch_token");
+const type = localStorage.getItem("TalentMatch_type");
 
-const Click = tw.div` flex flex-col w-11/12 h-full`;
-const heading = "Welcome to TalentMatch";
 export default ({
   tabs = {
     "View Jobs": {
@@ -68,7 +71,8 @@ export default ({
 
   return (
     <AnimationRevealPage>
-      <Header />
+            <Header IsLoggedIn={IsLoggedIn} type={type}/>
+
 
       <HeadingHeader>{heading}</HeadingHeader>
       <HeaderRow>
