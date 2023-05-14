@@ -7,7 +7,7 @@ import { SectionHeading } from "../../Components/Misc/Headings.js";
 import Header from "../../Components/headers/light.js";
 import Footer from "../../Components/footer/MiniCenteredFooter.js";
 import AnimationRevealPage from "../../helpers/AnimationRevealPage.js";
-import ViewJobs from "./ViewJobs.js";
+import MyJobs from "./ViewJobs.js";
 import AddJobs from "./AddJobs.js";
 import Profile from "./Profile.js";
 import Applicants from "./Applicants.js";
@@ -31,33 +31,35 @@ const TabControl = styled.div`
 
 const TabContent = tw(
   motion.div
-  )`mt-6 flex flex-wrap sm:-mr-10 md:-mr-6 lg:-mr-12`;
-  
-  const Click = tw.div` flex flex-col w-11/12 h-full`;
-  const heading = "Welcome to TalentMatch";
-  const IsLoggedIn = localStorage.getItem("TalentMatch_token");
+)`mt-6 flex flex-wrap sm:-mr-10 md:-mr-6 lg:-mr-12`;
+
+const Click = tw.div` flex flex-col w-11/12 h-full`;
+const heading = "Welcome to TalentMatch";
+const IsLoggedIn = localStorage.getItem("TalentMatch_token");
 const type = localStorage.getItem("TalentMatch_type");
 
 export default ({
   tabs = {
-    "View Jobs": {
+    "My Jobs": {
       component: (
         <Click>
-          <ViewJobs/>
+          <JobContainer>
+            <MyJobs />
+          </JobContainer>
         </Click>
       ),
     },
     "Post Jobs": {
       component: (
         <Click>
-          <AddJobs/>
+          <AddJobs />
         </Click>
       ),
     },
     Applicants: {
       component: (
         <Click>
-          <Applicants/>
+          <Applicants />
         </Click>
       ),
     },
@@ -71,8 +73,7 @@ export default ({
 
   return (
     <AnimationRevealPage>
-            <Header IsLoggedIn={IsLoggedIn} type={type}/>
-
+      <Header IsLoggedIn={IsLoggedIn} type={type} />
 
       <HeadingHeader>{heading}</HeadingHeader>
       <HeaderRow>

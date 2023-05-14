@@ -2,11 +2,12 @@ import { useState, useContext } from "react";
 import { Grid, Button, TextField, LinearProgress } from "@material-ui/core";
 import { CloudUpload } from "@material-ui/icons";
 import Axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import { SetPopupContext } from "../../App";
+
 
 const FileUploadInput = (props) => {
-  const setPopup = useContext(SetPopupContext);
 
   const { uploadTo, identifier, handleInput } = props;
 
@@ -14,9 +15,9 @@ const FileUploadInput = (props) => {
   const [uploadPercentage, setUploadPercentage] = useState(0);
 
   const handleUpload = () => {
-    console.log(file);
     const data = new FormData();
     data.append("file", file);
+    
     Axios.post(uploadTo, data, {
       headers: {
         "Content-Type": "multipart/form-data",
@@ -30,30 +31,20 @@ const FileUploadInput = (props) => {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         handleInput(identifier, response.data.url);
-        setPopup({
-          open: true,
-          severity: "success",
-          message: response.data.message,
-        });
+        toast.success("Resume Uploaded. Click Save")
       })
       .catch((err) => {
-        console.log(err.response);
-        setPopup({
-          open: true,
-          severity: "error",
-          message: err.response.statusText,
-          //   message: err.response.data
-          //     ? err.response.data.message
-          //     : err.response.statusText,
-        });
+        console.log(err);
+        toast.error("Resume Upload error")
       });
   };
 
   return (
     <Grid container item xs={12} direction="column" className={props.className}>
       <Grid container item xs={12} spacing={0}>
+        <ToastContainer/>
         <Grid item xs={3}>
           <Button
             variant="contained"
@@ -66,7 +57,7 @@ const FileUploadInput = (props) => {
               type="file"
               style={{ display: "none" }}
               onChange={(event) => {
-                console.log(event.target.files);
+               // console.log(event.target.files);
                 setUploadPercentage(0);
                 setFile(event.target.files[0]);
               }}

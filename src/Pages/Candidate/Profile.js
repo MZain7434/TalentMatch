@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import {
   Button,
   Grid,
   Typography,
-  Modal,
   Paper,
   makeStyles,
   TextField,
@@ -12,11 +11,12 @@ import axios from "axios";
 import ChipInput from "material-ui-chip-input";
 import FileUploadInput from "../../Components/lib/FileUploadInput.js";
 import DescriptionIcon from "@material-ui/icons/Description";
-import FaceIcon from "@material-ui/icons/Face";
 
 import { SetPopupContext } from "../../App";
 
 import apiList from "../../Components/lib/apiList.js";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MultifieldInput = (props) => {
+const MultifieldEducation = (props) => {
   const classes = useStyles();
   const { education, setEducation } = props;
 
@@ -81,9 +81,9 @@ const MultifieldInput = (props) => {
         </Grid>
       ))}
       <Grid item style={{ alignSelf: "center" }}>
-        <Button 
+        <Button
           variant="contained"
-          color="secondary"
+          color="primary"
           onClick={() =>
             setEducation([
               ...education,
@@ -102,19 +102,193 @@ const MultifieldInput = (props) => {
     </>
   );
 };
+const MultifieldCerticate = (props) => {
+  const classes = useStyles();
+  const { certificate, setCertificate } = props;
+
+  return (
+    <>
+      {certificate.map((obj, key) => (
+        <Grid item container className={classes.inputBox} key={key}>
+          <Grid item xs={9}>
+            <TextField
+              label={`Certificate Title #${key + 1}`}
+              value={certificate[key].certificateTitle}
+              onChange={(event) => {
+                const newCert = [...certificate];
+                newCert[key].certificateTitle = event.target.value;
+                setCertificate(newCert);
+              }}
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              label="Duration in months"
+              value={certificate[key].certificateDuration}
+              variant="outlined"
+              type="number"
+              onChange={(event) => {
+                const newCert = [...certificate];
+                newCert[key].certificateDuration = event.target.value;
+                setCertificate(newCert);
+              }}
+            />
+          </Grid>
+        </Grid>
+      ))}
+      <Grid item style={{ alignSelf: "center" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            setCertificate([
+              ...certificate,
+              {
+                certificateTitle: "",
+              },
+            ])
+          }
+          className={classes.inputBox}
+        >
+          Add another Certificate
+        </Button>
+      </Grid>
+    </>
+  );
+};
+const MultifieldProject = (props) => {
+  const classes = useStyles();
+  const { project, setProject } = props;
+
+  return (
+    <>
+      {project.map((obj, key) => (
+        <Grid item container className={classes.inputBox} key={key}>
+          <Grid item xs={9}>
+            <TextField
+              label={`Project Title #${key + 1}`}
+              value={project[key].projectTitle}
+              onChange={(event) => {
+                const newProj = [...project];
+                newProj[key].projectTitle = event.target.value;
+                setProject(newProj);
+              }}
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              label="Tech Stack"
+              value={obj.projectStack}
+              variant="outlined"
+              type="text"
+              onChange={(event) => {
+                const newProj = [...project];
+                newProj[key].projectStack = event.target.value;
+                setProject(newProj);
+              }}
+            />
+          </Grid>
+        </Grid>
+      ))}
+      <Grid item style={{ alignSelf: "center" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            setProject([
+              ...project,
+              {
+                projectTitle: "",
+                projectStack: "",
+              },
+            ])
+          }
+          className={classes.inputBox}
+        >
+          Add another Project
+        </Button>
+      </Grid>
+    </>
+  );
+};
+
+const MultifieldExperience = (props) => {
+  const classes = useStyles();
+  const { experience, setExperience } = props;
+
+  return (
+    <>
+      {experience.map((obj, key) => (
+        <Grid item container className={classes.inputBox} key={key}>
+          <Grid item xs={9}>
+            <TextField
+              label={`Position Title E.g Inter, Junior Android Developer etc. #${
+                key + 1
+              }`}
+              value={experience[key].positionTitle}
+              onChange={(event) => {
+                const newExp = [...experience];
+                newExp[key].positionTitle = event.target.value;
+                setExperience(newExp);
+              }}
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={3}>
+            <TextField
+              label="Duration in months"
+              value={obj.expTenure}
+              variant="outlined"
+              type="number"
+              onChange={(event) => {
+                const newExp = [...experience];
+                newExp[key].expTenure = event.target.value;
+                setExperience(newExp);
+              }}
+            />
+          </Grid>
+        </Grid>
+      ))}
+      <Grid item style={{ alignSelf: "center" }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() =>
+            setExperience([
+              ...experience,
+              {
+                positionTitle: "",
+                expTenure: "",
+              },
+            ])
+          }
+          className={classes.inputBox}
+        >
+          Add another Job Experience
+        </Button>
+      </Grid>
+    </>
+  );
+};
 
 const Profile = (props) => {
   const classes = useStyles();
-  const setPopup = useContext(SetPopupContext);
   const [userData, setUserData] = useState();
   const [open, setOpen] = useState(false);
 
   const [profileDetails, setProfileDetails] = useState({
     name: "",
     education: [],
+    certificate: [],
+    project: [],
+    experience: [],
     skills: [],
     resume: "",
-    profile: "",
   });
 
   const [education, setEducation] = useState([
@@ -122,6 +296,25 @@ const Profile = (props) => {
       institutionName: "",
       startYear: "",
       endYear: "",
+    },
+  ]);
+  const [certificate, setCertificate] = useState([
+    {
+      certificateTitle: "",
+      certificateDuration: "",
+    },
+  ]);
+
+  const [project, setProject] = useState([
+    {
+      projectTitle: "",
+      projectStack: "",
+    },
+  ]);
+  const [experience, setExperience] = useState([
+    {
+      positionTitle: "",
+      expTenure: "",
     },
   ]);
 
@@ -140,11 +333,10 @@ const Profile = (props) => {
     axios
       .get(apiList.user, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
         },
       })
       .then((response) => {
-        console.log(response.data);
         setProfileDetails(response.data);
         if (response.data.education.length > 0) {
           setEducation(
@@ -155,28 +347,42 @@ const Profile = (props) => {
             }))
           );
         }
+        if (response.data.certificate.length > 0) {
+          setCertificate(
+            response.data.certificate.map((cert) => ({
+              certificateTitle: cert.certificateTitle
+                ? cert.certificateTitle
+                : "",
+              certificateDuration: cert.certificateDuration
+                ? cert.certificateDuration
+                : "",
+            }))
+          );
+        }
+        if (response.data.project.length > 0) {
+          setProject(
+            response.data.project.map((proj) => ({
+              projectTitle: proj.projectTitle ? proj.projectTitle : "",
+              projectStack: proj.projectStack ? proj.projectStack : "",
+            }))
+          );
+        }
+        if (response.data.experience.length > 0) {
+          setExperience(
+            response.data.experience.map((exp) => ({
+              positionTitle: exp.positionTitle ? exp.positionTitle : "",
+              expTenure: exp.expTenure ? exp.expTenure : "",
+            }))
+          );
+        }
       })
       .catch((err) => {
         console.log(err.response.data);
-        setPopup({
-          open: true,
-          severity: "error",
-          message: "Error",
-        });
+        toast.error("Set Profile Details Error.");
       });
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const editDetails = () => {
-    setOpen(true);
-  };
-
   const handleUpdate = () => {
-    console.log(education);
-
     let updatedDetails = {
       ...profileDetails,
       education: education
@@ -187,35 +393,31 @@ const Profile = (props) => {
           }
           return obj;
         }),
+      certificate: certificate.filter(
+        (obj) => obj.certificateTitle.trim() !== ""
+      ),
+      project: project.filter((obj) => obj.projectTitle.trim() !== ""),
+      experience: experience.filter((obj) => obj.positionTitle.trim() !== ""),
     };
 
     axios
       .put(apiList.user, updatedDetails, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
         },
       })
       .then((response) => {
-        setPopup({
-          open: true,
-          severity: "success",
-          message: response.data.message,
-        });
+        toast.success("Updated Successfully");
         getData();
       })
       .catch((err) => {
-        setPopup({
-          open: true,
-          severity: "error",
-          message: err.response.data.message,
-        });
-        console.log(err.response);
+        toast.error("Error in updation");
       });
-    setOpen(false);
   };
 
   return (
     <>
+      <ToastContainer />
       <Grid
         container
         item
@@ -248,9 +450,18 @@ const Profile = (props) => {
                   fullWidth
                 />
               </Grid>
-              <MultifieldInput
+              <MultifieldEducation
                 education={education}
                 setEducation={setEducation}
+              />
+              <MultifieldCerticate
+                certificate={certificate}
+                setCertificate={setCertificate}
+              />
+              <MultifieldProject project={project} setProject={setProject} />
+              <MultifieldExperience
+                experience={experience}
+                setExperience={setExperience}
               />
               <Grid item>
                 <ChipInput
@@ -298,9 +509,6 @@ const Profile = (props) => {
           </Paper>
         </Grid>
       </Grid>
-      {/* <Modal open={open} onClose={handleClose} className={classes.popupDialog}> */}
-
-      {/* </Modal> */}
     </>
   );
 };

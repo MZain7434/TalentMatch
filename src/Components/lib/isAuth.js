@@ -1,9 +1,9 @@
 const isAuth = () => {
-  return localStorage.getItem("token");
+  return localStorage.getItem("TalentMatch_token");
 };
 
 export const userType = () => {
-  return localStorage.getItem("type");
+  return localStorage.getItem("TalentMatch_type");
 };
 
 export default isAuth;

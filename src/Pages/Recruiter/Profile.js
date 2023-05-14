@@ -11,10 +11,9 @@ import {
 import axios from "axios";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
-
-import { SetPopupContext } from "../../App";
-
 import apiList from "../../Components/lib/apiList";
+import { ToastContainer,toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -31,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = (props) => {
   const classes = useStyles();
-  const setPopup = useContext(SetPopupContext);
 
   const [profileDetails, setProfileDetails] = useState({
     name: "",
@@ -58,7 +56,7 @@ const Profile = (props) => {
     axios
       .get(apiList.user, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
         },
       })
       .then((response) => {
@@ -68,11 +66,7 @@ const Profile = (props) => {
       })
       .catch((err) => {
         console.log(err.response.data);
-        setPopup({
-          open: true,
-          severity: "error",
-          message: "Error",
-        });
+        toast.error("Error in getting the profile data");
       });
   };
 
@@ -98,25 +92,18 @@ const Profile = (props) => {
         },
       })
       .then((response) => {
-        setPopup({
-          open: true,
-          severity: "success",
-          message: response.data.message,
-        });
+       toast.success("Updated Succesfully.");
         getData();
       })
       .catch((err) => {
-        setPopup({
-          open: true,
-          severity: "error",
-          message: err.response.data.message,
-        });
+        toast.error("Error In updation.");
         console.log(err.response);
       });
   };
 
   return (
     <>
+    <ToastContainer/>
       <Grid
         container
         item
@@ -127,7 +114,7 @@ const Profile = (props) => {
         <Grid item>
           <Typography variant="h2">Profile</Typography>
         </Grid>
-        <Grid item xs style={{ width: "100%" }}>
+        <Grid item xs style={{width: "70%" }}>
           <Paper
             style={{
               padding: "20px",

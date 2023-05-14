@@ -13,7 +13,8 @@ import axios from "axios";
 import ChipInput from "material-ui-chip-input";
 import { SetPopupContext } from "../../App.js";
 import apiList from "../../Components/lib/apiList.js";
-import { toast } from "react-toastify";
+import {  ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -58,11 +59,23 @@ const CreateJobs = (props) => {
   };
 
   const handleUpdate = () => {
-    console.log(jobDetails);
+    if (
+      jobDetails.title === "" ||
+      jobDetails.company === "" ||
+      jobDetails.minEducation === "" ||
+      jobDetails.minExperience === "" ||
+      jobDetails.maxExperience === "" ||
+      jobDetails.skillsets === "" ||
+      jobDetails.location === ""
+    ) {
+      toast.error("Fill all the required fields");
+      return;
+    }
+    
     axios
       .post(apiList.jobs, jobDetails, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
         },
       })
       .then((response) => {
@@ -81,22 +94,18 @@ const CreateJobs = (props) => {
           skillsets: [],
           jobType: "Full Time",
           location: "",
-          duration: 0,
           salary: 0,
         });
       })
       .catch((err) => {
-        setPopup({
-          open: true,
-          severity: "error",
-          message: err.response.data.message,
-        });
+        toast.error("Job posting failed");
         console.log(err.response);
       });
   };
 
   return (
     <>
+    <ToastContainer/>
       <Grid
         container
         item
@@ -105,7 +114,7 @@ const CreateJobs = (props) => {
         style={{ padding: "30px", minHeight: "93vh", width: "" }}
       >
         <Grid item>
-          <Typography variant="h2">Add Job</Typography>
+          <Typography variant="h2">Post Job</Typography>
         </Grid>
         <Grid item container xs direction="column" justify="center">
           <Grid item>
@@ -126,7 +135,7 @@ const CreateJobs = (props) => {
                 spacing={3}
               >
                 <Grid item>
-                  <TextField
+                  <TextField required
                     label="Title"
                     value={jobDetails.title}
                     onChange={(event) =>
@@ -137,7 +146,7 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <TextField
+                  <TextField required
                     label="Company"
                     value={jobDetails.company}
                     onChange={(event) =>
@@ -148,7 +157,7 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <ChipInput
+                  <ChipInput required
                     className={classes.inputBox}
                     label="Skills"
                     variant="outlined"
@@ -172,7 +181,7 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <TextField
+                  <TextField required
                     label="Min. Education"
                     value={jobDetails.minEducation}
                     onChange={(event) =>
@@ -199,8 +208,8 @@ const CreateJobs = (props) => {
                   </TextField>
                 </Grid>
                 <Grid item>
-                  <TextField
-                    select
+                  <TextField required
+                    select 
                     label="Min. Experience"
                     variant="outlined"
                     value={jobDetails.minExperience}
@@ -221,7 +230,7 @@ const CreateJobs = (props) => {
                   </TextField>
                 </Grid>
                 <Grid item>
-                  <TextField
+                  <TextField required
                     select
                     label="Max. Experience"
                     variant="outlined"
@@ -243,7 +252,7 @@ const CreateJobs = (props) => {
                   </TextField>
                 </Grid>
                 <Grid item>
-                  <TextField
+                  <TextField required
                     label="Location"
                     value={jobDetails.location}
                     onChange={(event) =>
@@ -254,7 +263,7 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <TextField
+                  <TextField required
                     label="Salary"
                     type="number"
                     variant="outlined"
