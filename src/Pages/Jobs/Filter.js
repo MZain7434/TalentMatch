@@ -30,108 +30,112 @@ const SearchBarLeftIcon = tw(SearchBarIcon)`left-0`;
 const SearchBarRightIcon = tw(SearchBarIcon)`right-0 hocus:text-xl`;
 const SearchButton = tw.button`px-6 py-2 rounded-full inline-block text-white bg-purple-600 hover:bg-purple-800 transition-all duration-200`;
 
-const SearchBars = () => {
-  const [inputValues, setInputValues] = useState({
-    job: "",
-    company: "",
-    location: "",
-  });
+  const SearchBars = () => {
+    const [inputValues, setInputValues] = useState({
+      job: "",
+      company: "",
+      location: "",
+    });
 
-  const handleInputChange = (event) => {
-    const { id, value } = event.target;
-    setInputValues({ ...inputValues, [id]: value });
-  };
-
-  const clearSearchBox = (id) => {
-    const inputBox = document.getElementById(id);
-    if (inputBox) {
-      inputBox.value = '';
-      setInputValues({ ...inputValues, [id]: '' });
-    }
-  };
-
-  const handleSearch = (event) => {
-    event.preventDefault();
-    const payload = JSON.stringify(inputValues);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const handleInputChange = (event) => {
+      const { id, value } = event.target;
+      setInputValues({ ...inputValues, [id]: value });
     };
-    axios.post(apiList.login, payload, config)
-      .then((response) => {
-        // handle API response
-      })
-      .catch((error) => {
-        // handle API error
-      });
+
+    const clearSearchBox = (id) => {
+      const inputBox = document.getElementById(id);
+      if (inputBox) {
+        inputBox.value = '';
+        setInputValues({ ...inputValues, [id]: '' });
+      }
+    };
+
+    const handleSearch = (event) => {
+      event.preventDefault();
+      const payload = JSON.stringify(inputValues);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      axios.post(apiList.login, payload, config)
+        .then((response) => {
+          // handle API response
+        })
+        .catch((error) => {
+          // handle API error
+        });
+    };
+
+    return (
+      <Container>
+        <form onSubmit={handleSearch}>
+          <SearchBarContainer>
+            <SearchBarWrapper>
+              <SearchBarLeftIcon>
+                <AiOutlineSearch />
+              </SearchBarLeftIcon>
+              <SearchBarInput
+                type="text"
+                id="job"
+                placeholder="Search Job here"
+                value={inputValues.job}
+                onChange={handleInputChange}
+              />
+              <SearchBarRightIcon onClick={() => clearSearchBox('job')}>
+                <AiOutlineCloseCircle />
+              </SearchBarRightIcon>
+            </SearchBarWrapper>
+            <SearchBarWrapper>
+              <SearchBarLeftIcon>
+                <BsHouseDoor />
+              </SearchBarLeftIcon>
+              <SearchBarInput
+                type="text"
+                id="company"
+                placeholder="Search by Company"
+                value={inputValues.company}
+                onChange={handleInputChange}
+              />
+              <SearchBarRightIcon onClick={() => clearSearchBox('company')}>
+                <AiOutlineCloseCircle />
+              </SearchBarRightIcon>
+            </SearchBarWrapper>
+            <SearchBarWrapper>
+              <SearchBarLeftIcon>
+                <GoLocation />
+              </SearchBarLeftIcon>
+              <SearchBarInput
+                type="text"
+                id="location"
+                placeholder="Search By Location"
+                value={inputValues.location}
+                onChange={handleInputChange}
+              />
+              <SearchBarRightIcon onClick={() => clearSearchBox('location')}>
+                <AiOutlineCloseCircle />
+              </SearchBarRightIcon>
+            </SearchBarWrapper>
+            <SearchButton type="submit">Search</SearchButton>
+          </SearchBarContainer>
+        </form>
+      </Container>
+    );
   };
 
-  return (
-    <Container>
-      <form onSubmit={handleSearch}>
-        <SearchBarContainer>
-          <SearchBarWrapper>
-            <SearchBarLeftIcon>
-              <AiOutlineSearch />
-            </SearchBarLeftIcon>
-            <SearchBarInput
-              type="text"
-              id="job"
-              placeholder="Search Job here"
-              value={inputValues.job}
-              onChange={handleInputChange}
-            />
-            <SearchBarRightIcon onClick={() => clearSearchBox('job')}>
-              <AiOutlineCloseCircle />
-            </SearchBarRightIcon>
-          </SearchBarWrapper>
-          <SearchBarWrapper>
-            <SearchBarLeftIcon>
-              <BsHouseDoor />
-            </SearchBarLeftIcon>
-            <SearchBarInput
-              type="text"
-              id="company"
-              placeholder="Search by Company"
-              value={inputValues.company}
-              onChange={handleInputChange}
-            />
-            <SearchBarRightIcon onClick={() => clearSearchBox('company')}>
-              <AiOutlineCloseCircle />
-            </SearchBarRightIcon>
-          </SearchBarWrapper>
-          <SearchBarWrapper>
-            <SearchBarLeftIcon>
-              <GoLocation />
-            </SearchBarLeftIcon>
-            <SearchBarInput
-              type="text"
-              id="location"
-              placeholder="Search By Location"
-              value={inputValues.location}
-              onChange={handleInputChange}
-            />
-            <SearchBarRightIcon onClick={() => clearSearchBox('location')}>
-              <AiOutlineCloseCircle />
-            </SearchBarRightIcon>
-          </SearchBarWrapper>
-          <SearchButton type="submit">Search</SearchButton>
-        </SearchBarContainer>
-      </form>
-    </Container>
-  );
-};
-
-export default SearchBars;
+  export default SearchBars;
 
 
 
-const DropdownContainer = tw.div`flex justify-between w-full mt-4`;
-const DropdownWrapper = tw.div`relative mr-8`;
-const DropdownButton = tw.button`h-12 px-4 rounded-lg text-gray-900 font-medium bg-white border-2 border-gray-200 hover:border-gray-400 focus:border-gray-400 focus:outline-none transition-all duration-200`;
-const DropdownMenu = tw.ul`absolute top-0 left-0 w-full bg-white border-2 border-gray-200 rounded-lg mt-2 p-4 shadow-lg`;
-const DropdownItem = tw.li`py-2 hover:text-white hover:bg-purple-600 transition-all duration-200`;
+
+
+
+
+// const DropdownContainer = tw.div`flex justify-between w-full mt-4`;
+// const DropdownWrapper = tw.div`relative mr-8`;
+// const DropdownButton = tw.button`h-12 px-4 rounded-lg text-gray-900 font-medium bg-white border-2 border-gray-200 hover:border-gray-400 focus:border-gray-400 focus:outline-none transition-all duration-200`;
+// const DropdownMenu = tw.ul`absolute top-0 left-0 w-full bg-white border-2 border-gray-200 rounded-lg mt-2 p-4 shadow-lg`;
+// const DropdownItem = tw.li`py-2 hover:text-white hover:bg-purple-600 transition-all duration-200`;
 {/* <DropdownContainer>
           <DropdownWrapper>
           <DropdownButton>Sort by:</DropdownButton>
