@@ -13,8 +13,8 @@ import axios from "axios";
 import ChipInput from "material-ui-chip-input";
 import { SetPopupContext } from "../../App.js";
 import apiList from "../../Components/lib/apiList.js";
-import {  ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -38,7 +38,7 @@ const CreateJobs = (props) => {
     company: "",
     minEducation: "",
     minExperience: "",
-    maxExperience: "",
+    minExperienceDuration: "",
     maxApplicants: 100,
     maxPositions: 30,
     deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -64,14 +64,14 @@ const CreateJobs = (props) => {
       jobDetails.company === "" ||
       jobDetails.minEducation === "" ||
       jobDetails.minExperience === "" ||
-      jobDetails.maxExperience === "" ||
+      jobDetails.minExperienceDuration === "" ||
       jobDetails.skillsets === "" ||
       jobDetails.location === ""
     ) {
       toast.error("Fill all the required fields");
       return;
     }
-    
+console.log(jobDetails);
     axios
       .post(apiList.jobs, jobDetails, {
         headers: {
@@ -85,7 +85,6 @@ const CreateJobs = (props) => {
           company: "",
           minEducation: "",
           minExperience: "",
-          maxExperience: "",
           maxApplicants: 100,
           maxPositions: 30,
           deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -105,7 +104,7 @@ const CreateJobs = (props) => {
 
   return (
     <>
-    <ToastContainer/>
+      <ToastContainer />
       <Grid
         container
         item
@@ -135,7 +134,8 @@ const CreateJobs = (props) => {
                 spacing={3}
               >
                 <Grid item>
-                  <TextField required
+                  <TextField
+                    required
                     label="Title"
                     value={jobDetails.title}
                     onChange={(event) =>
@@ -146,7 +146,8 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <TextField required
+                  <TextField
+                    required
                     label="Company"
                     value={jobDetails.company}
                     onChange={(event) =>
@@ -157,7 +158,8 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <ChipInput required
+                  <ChipInput
+                    required
                     className={classes.inputBox}
                     label="Skills"
                     variant="outlined"
@@ -181,7 +183,8 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <TextField required
+                  <TextField
+                    required
                     label="Min. Education"
                     value={jobDetails.minEducation}
                     onChange={(event) =>
@@ -207,52 +210,37 @@ const CreateJobs = (props) => {
                     <MenuItem value="Work From Home">Work From Home</MenuItem>
                   </TextField>
                 </Grid>
-                <Grid item>
-                  <TextField required
-                    select 
-                    label="Min. Experience"
-                    variant="outlined"
-                    value={jobDetails.minExperience}
-                    onChange={(event) => {
-                      handleInput("minExperience", event.target.value);
-                    }}
-                    fullWidth
-                  >
-                    <MenuItem value="Less than 1 Year">
-                      Less than 1 Year
-                    </MenuItem>
-                    <MenuItem value="1-2 years">1-2 years</MenuItem>
-                    <MenuItem value="2-4 years">2-4 years</MenuItem>
-                    <MenuItem value="4-6 years">4-6 years</MenuItem>
-                    <MenuItem value="6-8 years">6-8 years</MenuItem>
-                    <MenuItem value="8-10 years">8-10 years</MenuItem>
-                    <MenuItem value="10+ years">10+ years</MenuItem>
-                  </TextField>
+                <Grid item container className={classes.inputBox}>
+                  <Grid item xs={9}>
+                    <TextField
+                      required
+                      label="Min. Experience Title"
+                      value={jobDetails.minExperience}
+                      onChange={(event) =>
+                        handleInput("minExperience", event.target.value)
+                      }
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <TextField
+                      required
+                      label="Duration in Month"
+                      value={jobDetails.minExperienceDuration}
+                      type="number"
+                      onChange={(event) =>
+                        handleInput("minExperienceDuration", event.target.value)
+                      }
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
                 </Grid>
+
                 <Grid item>
-                  <TextField required
-                    select
-                    label="Max. Experience"
-                    variant="outlined"
-                    value={jobDetails.maxExperience}
-                    onChange={(event) => {
-                      handleInput("maxExperience", event.target.value);
-                    }}
-                    fullWidth
-                  >
-                    <MenuItem value="Less than 1 Year">
-                      Less than 1 Year
-                    </MenuItem>
-                    <MenuItem value="1-2 years">1-2 years</MenuItem>
-                    <MenuItem value="2-4 years">2-4 years</MenuItem>
-                    <MenuItem value="4-6 years">4-6 years</MenuItem>
-                    <MenuItem value="6-8 years">6-8 years</MenuItem>
-                    <MenuItem value="8-10 years">8-10 years</MenuItem>
-                    <MenuItem value="10+ years">10+ years</MenuItem>
-                  </TextField>
-                </Grid>
-                <Grid item>
-                  <TextField required
+                  <TextField
+                    required
                     label="Location"
                     value={jobDetails.location}
                     onChange={(event) =>
@@ -263,7 +251,8 @@ const CreateJobs = (props) => {
                   />
                 </Grid>
                 <Grid item>
-                  <TextField required
+                  <TextField
+                    required
                     label="Salary"
                     type="number"
                     variant="outlined"

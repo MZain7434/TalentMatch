@@ -8,7 +8,9 @@ import {
   TextField,
   Typography,
   Modal,
+  MenuItem,
 } from "@material-ui/core";
+import ChipInput from "material-ui-chip-input";
 
 import Rating from "@material-ui/lab/Rating";
 import Pagination from "@material-ui/lab/Pagination";
@@ -54,14 +56,12 @@ const useStyles = makeStyles((theme) => ({
 
 const JobTile = (props) => {
   const classes = useStyles();
-  let history = 'A';
   const { job, getData } = props;
 
   const [open, setOpen] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
   const [jobDetails, setJobDetails] = useState(job);
 
-  console.log(jobDetails);
 
   const handleInput = (key, value) => {
     setJobDetails({
@@ -70,9 +70,7 @@ const JobTile = (props) => {
     });
   };
 
-  const handleClick = (location) => {
-    history.push(location);
-  };
+
 
   const handleClose = () => {
     setOpen(false);
@@ -103,6 +101,7 @@ const JobTile = (props) => {
   };
 
   const handleJobUpdate = () => {
+    console.log(jobDetails);
     axios
       .put(`${apiList.jobs}/${job._id}`, jobDetails, {
         headers: {
@@ -149,45 +148,40 @@ const JobTile = (props) => {
             ))}
           </Grid>
         </Grid>
-        <Grid item container direction="column" xs={3}>
-          <Grid item xs>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.statusBlock}
-              onClick={() => handleClick(`/job/applications/${job._id}`)}
-            >
-              View Applications
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              className={classes.statusBlock}
-              onClick={() => {
-                setOpenUpdate(true);
-              }}
-              style={{
-                background: "#FC7A1E",
-                color: "#fff",
-              }}
-            >
-              Update Details
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.statusBlock}
-              onClick={() => {
-                setOpen(true);
-              }}
-            >
-              Delete Job
-            </Button>
-          </Grid>
-        </Grid>
+        <Grid item container direction="column" xs={3} spacing={2}>
+  <Grid item>
+    <Button
+      variant="contained"
+      className={classes.statusBlock}
+      onClick={() => {
+        setOpenUpdate(true);
+      }}
+      style={{
+        background: "#FC7A1E",
+        color: "#fff",
+        width: "100%", // Adjust the width as needed
+      }}
+    >
+      Update Details
+    </Button>
+  </Grid>
+  <Grid item>
+    <Button
+      variant="contained"
+      color="secondary"
+      className={classes.statusBlock}
+      onClick={() => {
+        setOpen(true);
+      }}
+      style={{
+        width: "100%", // Adjust the width as needed
+      }}
+    >
+      Delete Job
+    </Button>
+  </Grid>
+</Grid>
+
       </Grid>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
         <Paper
@@ -240,61 +234,201 @@ const JobTile = (props) => {
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
-            minWidth: "30%",
             alignItems: "center",
+            minWidth: "80%",
+            alignItems: "center",
+            maxHeight: "100vh",
+            overflow: "auto",
           }}
         >
-          <Typography variant="h4" style={{ marginBottom: "10px" }}>
+           <div style={{ minWidth: "100%", maxHeight: "90%", overflowY: "auto", overflowX: "hidden",
+           display: "flex", // Change the display property to flex
+           flexWrap: "wrap", // Wrap the fields within the container
+           }}>
+
+          <Typography variant="h4" style={{ marginBottom: "10px", textAlign: "center", }}>
             Update Details
           </Typography>
           <Grid
-            container
-            direction="column"
-            spacing={3}
-            style={{ margin: "10px" }}
-          >
-            <Grid item>
-              <TextField
-                label="Application Deadline"
-                type="datetime-local"
-                value={jobDetails.deadline.substr(0, 16)}
-                onChange={(event) => {
-                  handleInput("deadline", event.target.value);
-                }}
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="outlined"
-                fullWidth
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                label="Maximum Number Of Applicants"
-                type="number"
-                variant="outlined"
-                value={jobDetails.maxApplicants}
-                onChange={(event) => {
-                  handleInput("maxApplicants", event.target.value);
-                }}
-                InputProps={{ inputProps: { min: 1 } }}
-                fullWidth
-              />
-            </Grid>
-            <Grid item>
-              <TextField
-                label="Positions Available"
-                type="number"
-                variant="outlined"
-                value={jobDetails.maxPositions}
-                onChange={(event) => {
-                  handleInput("maxPositions", event.target.value);
-                }}
-                InputProps={{ inputProps: { min: 1 } }}
-                fullWidth
-              />
-            </Grid>
-          </Grid>
+                container
+                direction="column"
+                alignItems="stretch"
+                spacing={3}
+                style={{margin: "10px"}}
+              >
+                <Grid item>
+                  <TextField
+                    required
+                    label="Title"
+                    value={jobDetails.title}
+                    onChange={(event) =>
+                      handleInput("title", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    required
+                    label="Company"
+                    value={jobDetails.company}
+                    onChange={(event) =>
+                      handleInput("company", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <ChipInput
+                    required
+                    className={classes.inputBox}
+                    label="Skills"
+                    variant="outlined"
+                    helperText="Press enter to add skills"
+                    value={jobDetails.skillsets}
+                    onAdd={(chip) =>
+                      setJobDetails({
+                        ...jobDetails,
+                        skillsets: [...jobDetails.skillsets, chip],
+                      })
+                    }
+                    onDelete={(chip, index) => {
+                      let skillsets = jobDetails.skillsets;
+                      skillsets.splice(index, 1);
+                      setJobDetails({
+                        ...jobDetails,
+                        skillsets: skillsets,
+                      });
+                    }}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    required
+                    label="Min. Education"
+                    value={jobDetails.minEducation}
+                    onChange={(event) =>
+                      handleInput("minEducation", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    select
+                    label="Job Type"
+                    variant="outlined"
+                    value={jobDetails.jobType}
+                    onChange={(event) => {
+                      handleInput("jobType", event.target.value);
+                    }}
+                    fullWidth
+                  >
+                    <MenuItem value="Full Time">Full Time</MenuItem>
+                    <MenuItem value="Part Time">Part Time</MenuItem>
+                    <MenuItem value="Work From Home">Work From Home</MenuItem>
+                  </TextField>
+                </Grid>
+                <Grid item container className={classes.inputBox}>
+                  <Grid item xs={9}>
+                    <TextField
+                      required
+                      label="Min. Experience Title"
+                      value={jobDetails.minExperience}
+                      onChange={(event) =>
+                        handleInput("minExperience", event.target.value)
+                      }
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <TextField
+                      required
+                      label="Duration in Month"
+                      value={jobDetails.minExperienceDuration}
+                      type="number"
+                      onChange={(event) =>
+                        handleInput("minExperienceDuration", event.target.value)
+                      }
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </Grid>
+                </Grid>
+
+                <Grid item>
+                  <TextField
+                    required
+                    label="Location"
+                    value={jobDetails.location}
+                    onChange={(event) =>
+                      handleInput("location", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    required
+                    label="Salary"
+                    type="number"
+                    variant="outlined"
+                    value={jobDetails.salary}
+                    onChange={(event) => {
+                      handleInput("salary", event.target.value);
+                    }}
+                    InputProps={{ inputProps: { min: 0 } }}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="Application Deadline"
+                    type="datetime-local"
+                    value={jobDetails.deadline}
+                    onChange={(event) => {
+                      handleInput("deadline", event.target.value);
+                    }}
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="Maximum Number Of Applicants"
+                    type="number"
+                    variant="outlined"
+                    value={jobDetails.maxApplicants}
+                    onChange={(event) => {
+                      handleInput("maxApplicants", event.target.value);
+                    }}
+                    InputProps={{ inputProps: { min: 1 } }}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="Positions Available"
+                    type="number"
+                    variant="outlined"
+                    value={jobDetails.maxPositions}
+                    onChange={(event) => {
+                      handleInput("maxPositions", event.target.value);
+                    }}
+                    InputProps={{ inputProps: { min: 1 } }}
+                    fullWidth
+                  />
+                </Grid>
+              </Grid>
           <Grid container justify="center" spacing={5}>
             <Grid item>
               <Button
@@ -317,6 +451,8 @@ const JobTile = (props) => {
               </Button>
             </Grid>
           </Grid>
+          </div>
+        
         </Paper>
       </Modal>
     </Paper>

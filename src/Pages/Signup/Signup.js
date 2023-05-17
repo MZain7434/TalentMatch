@@ -84,10 +84,10 @@ export default ({
           localStorage.setItem("TalentMatch_token", response.data.token);
           localStorage.setItem("TalentMatch_type", response.data.type);
           localStorage.setItem("TalentMatch_name", response.data.name);
-          if (response.data.type == "candidate") {
-            navigate("/candidate");
+          if (response.data.type === "candidate") {
+            window.location.href ='/candidate';
           } else {
-            navigate("/recruiter");
+            window.location.href ='/recruiter';
           }
         }
       })

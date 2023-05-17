@@ -28,6 +28,8 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 
 import apiList from "../../Components/lib/apiList.js";
 import { userType } from "../../Components/lib/isAuth.js";
+import {  ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const useStyles = makeStyles((theme) => ({
   body: {
@@ -74,17 +76,17 @@ const JobTile = (props) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("TalentMatch_token")}`,
           },
         }
       )
       .then((response) => {
         //
+        toast.success("Job application submitted");
         handleClose();
       })
       .catch((err) => {
-        console.log(err.response);
-        //
+toast.error(err.response.data.message);
         handleClose();
       });
   };
@@ -195,14 +197,10 @@ const ListOfJobs = (props) => {
         },
       })
       .then((response) => {
-        console.log(1);
-        console.log(response.data);
         setJobs(
           response.data.filter((obj) => {
             const today = new Date();
-            console.log(obj.deadline);
             const deadline = new Date(obj.deadline);
-            console.log(deadline);
             return deadline > today;
           })
         );
@@ -215,6 +213,7 @@ const ListOfJobs = (props) => {
 
   return (
     <>
+    <ToastContainer/>
       <Grid
         container
         item

@@ -59,7 +59,9 @@ export default ({
     Applicants: {
       component: (
         <Click>
-          <Applicants />
+          <JobContainer>
+            <Applicants />
+          </JobContainer>
         </Click>
       ),
     },

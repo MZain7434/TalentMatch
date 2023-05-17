@@ -41,11 +41,11 @@ const MultifieldEducation = (props) => {
         <Grid item container className={classes.inputBox} key={key}>
           <Grid item xs={6}>
             <TextField
-              label={`Institution Name #${key + 1}`}
-              value={education[key].institutionName}
+              label={`Degree Code #${key + 1}`}
+              value={education[key].degreeCode}
               onChange={(event) => {
                 const newEdu = [...education];
-                newEdu[key].institutionName = event.target.value;
+                newEdu[key].degreeCode = event.target.value;
                 setEducation(newEdu);
               }}
               variant="outlined"
@@ -88,7 +88,7 @@ const MultifieldEducation = (props) => {
             setEducation([
               ...education,
               {
-                institutionName: "",
+                degreeCode: "",
                 startYear: "",
                 endYear: "",
               },
@@ -96,7 +96,7 @@ const MultifieldEducation = (props) => {
           }
           className={classes.inputBox}
         >
-          Add another institution details
+          Add another degree details
         </Button>
       </Grid>
     </>
@@ -293,7 +293,7 @@ const Profile = (props) => {
 
   const [education, setEducation] = useState([
     {
-      institutionName: "",
+      degreeCode: "",
       startYear: "",
       endYear: "",
     },
@@ -341,7 +341,7 @@ const Profile = (props) => {
         if (response.data.education.length > 0) {
           setEducation(
             response.data.education.map((edu) => ({
-              institutionName: edu.institutionName ? edu.institutionName : "",
+              degreeCode: edu.degreeCode ? edu.degreeCode : "",
               startYear: edu.startYear ? edu.startYear : "",
               endYear: edu.endYear ? edu.endYear : "",
             }))
@@ -386,7 +386,7 @@ const Profile = (props) => {
     let updatedDetails = {
       ...profileDetails,
       education: education
-        .filter((obj) => obj.institutionName.trim() !== "")
+        .filter((obj) => obj.degreeCode.trim() !== "")
         .map((obj) => {
           if (obj["endYear"] === "") {
             delete obj["endYear"];
