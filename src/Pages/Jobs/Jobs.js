@@ -20,7 +20,7 @@ const SearchBars = () => {
   return (
     <AnimationRevealPage>
       <Header IsLoggedIn={IsLoggedIn} type={type} />
-      <Filter />
+      {/* <Filter />  */}
       <JobContainer>
         <ListOfJobs />
       </JobContainer>

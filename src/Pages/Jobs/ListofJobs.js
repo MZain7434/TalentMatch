@@ -3,29 +3,13 @@ import {
   Button,
   Chip,
   Grid,
-  IconButton,
-  InputAdornment,
   makeStyles,
   Paper,
   TextField,
   Typography,
   Modal,
-  Slider,
-  FormControlLabel,
-  FormGroup,
-  MenuItem,
-  Checkbox,
 } from "@material-ui/core";
-import Rating from "@material-ui/lab/Rating";
-import Pagination from "@material-ui/lab/Pagination";
 import axios from "axios";
-import SearchIcon from "@material-ui/icons/Search";
-import FilterListIcon from "@material-ui/icons/FilterList";
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
-
-// import { SetPopupContext } from "../../App.js";
-
 import apiList from "../../Components/lib/apiList.js";
 import { userType } from "../../Components/lib/isAuth.js";
 import {  ToastContainer, toast } from 'react-toastify';
@@ -177,7 +161,6 @@ toast.error(err.response.data.message);
 
 const ListOfJobs = (props) => {
   const [jobs, setJobs] = useState([]);
-  const [filterOpen, setFilterOpen] = useState(false);
 
   useEffect(() => {
     getData();
@@ -250,9 +233,6 @@ const ListOfJobs = (props) => {
               No jobs found
             </Typography>
           )}
-        </Grid>
-        <Grid item>
-          <Pagination count={10} color="primary" />
         </Grid>
       </Grid>
     </>

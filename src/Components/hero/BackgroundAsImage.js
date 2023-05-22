@@ -16,7 +16,7 @@ import BackgroundImage from "../../images/hero-Background-Image.jpg";
 
 
 const StyledHeader = styled(Header)`
-  ${tw`pt-8 max-w-none`}
+  ${tw`pt-8 max-w-none text-white!`}
   ${DesktopNavLinks} {
     ${tw`text-white! hover:border-gray-300 hover:text-gray-300`}
 }

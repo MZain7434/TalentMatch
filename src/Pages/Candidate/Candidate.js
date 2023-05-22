@@ -8,7 +8,6 @@ import Header from "../../Components/headers/light.js";
 import Footer from "../../Components/footer/MiniCenteredFooter.js";
 import AnimationRevealPage from "../../helpers/AnimationRevealPage.js";
 import ListOfJobs from "../Jobs/ListofJobs.js";
-import Filter from "../Jobs/Filter.js";
 import Profile from "../Candidate/Profile.js";
 import Applications from "../Candidate/Applications.js";
 
@@ -45,7 +44,6 @@ export default ({
     Jobs: {
       component: (
         <Click>
-          <Filter class="mb-4" />
           <JobContainer>
             <ListOfJobs />
           </JobContainer>

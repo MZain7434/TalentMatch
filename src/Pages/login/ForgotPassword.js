@@ -23,7 +23,7 @@ const Heading = tw(SectionHeading)``;
 const Text = tw.p`mt-4 text-center md:text-left text-sm md:text-base lg:text-lg font-medium leading-relaxed text-secondary-100`;
 
 const MainContent = tw.div`mt-12 flex flex-col items-center`;
-const Input = tw.input`w-1/2 px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-400 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`;
+const Input = tw.input`w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-400 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5 first:mt-0`;
 const SubmitButton = styled.button`
   ${tw`mt-5  font-semibold bg-primary-500! text-gray-100 w-1/6  py-4 rounded-lg hover:bg-primary-900! flex items-center justify-center focus:shadow-outline focus:outline-none`}
   }

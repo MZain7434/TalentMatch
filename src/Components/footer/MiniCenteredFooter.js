@@ -39,11 +39,10 @@ export default () => {
             <LogoText>TalentMatch</LogoText>
           </LogoContainer>
           <LinksContainer>
-            <Link href="#">Home</Link>
-            <Link href="#">About</Link>
-            <Link href="#">Contact Us</Link>
-            <Link href="#">Blog</Link>
-            <Link href="#">Reviews</Link>
+            <Link href="/">Home</Link>
+            <Link href="/jobs">Jobs</Link>
+            <Link href="/privacypolicy">Privacy policy</Link>
+            <Link href="/tos">Term Of Services</Link>
           </LinksContainer>
           <SocialLinksContainer>
             <SocialLink href="https://facebook.com">
